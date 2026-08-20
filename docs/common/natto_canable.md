@@ -18,7 +18,7 @@ canable ノードは、CANAble デバイスを使用して CAN 通信を行い�
 | retry_write_can | bool | true | 書き込みリトライを有効化 |
 | max_retry_write_count | int | 5 | 書き込みの最大リトライ回数 |
 | use_fd | bool | false | CAN FD フレームを使用する場合は true に設定 |
-| bitrate_switch | bool | false | CAN FDのBit Rate Switchを使用する場合はtrueに設定 |
+| bitrate_switch | bool | true | CAN FDのBit Rate Switchを使用する場合はtrueに設定 |
 
 ## パブリッシャー
 | トピック名 | メッセージ型 | 説明 |
