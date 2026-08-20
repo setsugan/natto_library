@@ -18,6 +18,7 @@ canable ノードは、CANAble デバイスを使用して CAN 通信を行い�
 | retry_write_can | bool | true | 書き込みリトライを有効化 |
 | max_retry_write_count | int | 5 | 書き込みの最大リトライ回数 |
 | use_fd | bool | false | CAN FD フレームを使用する場合は true に設定 |
+| bitrate_switch | bool | false | CAN FDのBit Rate Switchを使用する場合はtrueに設定 |
 
 ## パブリッシャー
 | トピック名 | メッセージ型 | 説明 |
@@ -82,7 +83,7 @@ Classic CAN ~1Mbpsの場合
     ```
     $ ip a
     41: can0: <NOARP,UP,LOWER_UP,ECHO> mtu 16 qdisc pfifo_fast state UP group default qlen 10
-    link/can 
+    link/can
     ```
 
 ## 事前準備 (FDの場合)

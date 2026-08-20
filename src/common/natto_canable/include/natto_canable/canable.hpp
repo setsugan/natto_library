@@ -45,6 +45,7 @@ class canable : public rclcpp::Node {
     bool retry_open_can_        = true;
     bool retry_write_can_       = true;
     bool use_fd_                = false;
+    bool bitrate_switch_        = true;
     int  retry_write_count_     = 0;
     int  max_retry_write_count_ = 5;
 

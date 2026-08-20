@@ -22,6 +22,7 @@ canable::canable (const rclcpp::NodeOptions &node_options) : Node ("canable", no
     retry_write_can_       = this->declare_parameter<bool> ("retry_write_can", true);
     max_retry_write_count_ = static_cast<int> (this->declare_parameter<int> ("max_retry_write_count", 5));
     use_fd_                = this->declare_parameter<bool> ("use_fd", false);
+    bitrate_switch_        = this->declare_parameter<bool> ("bitrate_switch", true);
 
     if (init_can_socket () != 0) {
         RCLCPP_FATAL (get_logger (), "Failed to initialize CAN socket");
@@ -175,7 +176,7 @@ void canable::write_can_socket (const natto_msgs::msg::Can &msg) {
             struct canfd_frame frame {};
             frame.can_id = msg.is_extended ? ((msg.id & CAN_EFF_MASK) | CAN_EFF_FLAG) : (msg.id & CAN_SFF_MASK);
             frame.len    = msg.len;
-            frame.flags  = CANFD_BRS;
+            frame.flags  = bitrate_switch_ ? CANFD_BRS : 0;
             std::copy (msg.data.begin (), msg.data.begin () + msg.len, frame.data);
             ret = write (fd, &frame, sizeof (frame));
         } else {
